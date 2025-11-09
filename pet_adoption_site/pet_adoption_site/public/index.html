@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurum Paws - Luxury Pet Adoption</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --charcoal: #1a1a1a;
+            --cream: #f5f1e6;
+            --gold: #d4af37;
+            --light-gold: #f4e4a6;
+            --dark-gold: #b8941f;
+            --gray: #3a3a3a;
+            --light-gray: #5a5a5a;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--charcoal);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9));
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--cream);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light-gold);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Pets Section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .pets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pet-card {
+            background-color: var(--cream);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            color: var(--charcoal);
+        }
+
+        .pet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .pet-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .pet-info {
+            padding: 20px;
+        }
+
+        .pet-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--charcoal);
+        }
+
+        .pet-details {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .pet-detail {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .pet-detail svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--gold);
+        }
+
+        .pet-description {
+            margin-bottom: 20px;
+            color: var(--light-gray);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 5px 20px;
+            background-color: var(--gray);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            color: white;
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-gray);
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .faq-icon {
+            transition: var(--transition);
+        }
+.faq-question-hero-html {
+    position: relative; 
+    padding: 0; 
+    cursor: pointer;
+    overflow: hidden;
+    height: 100px; /* 💥 IMAGE AREA HEIGHT REDUCED HERE */
+    border-radius: 8px 8px 0 0; 
+}
+
+/* 2. Styling the HTML Image */
+.faq-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* 3. Create the Dark Overlay */
+.faq-question-hero-html::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0.2)
+    );
+    z-index: 2; 
+}
+
+/* 4. Position the Text on Top - CONTROLS TEXT SPACING */
+.faq-question-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 15px 25px; /* 💥 TEXT PADDING ADJUSTED HERE */
+    color: white; 
+    z-index: 3; 
+}
+
+/* Ensure the text is slightly larger and white for the image item */
+.faq-question-content h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: white;
+}
+
+/* Ensure the icon is white */
+.faq-question-content .faq-icon {
+    color: white;
+}
+
+/* --- Answer Section Styling --- */
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-icon,
+        .faq-item.active .faq-quetion-content .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--gold);
+            z-index: 1;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding: 0 15px;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--gold);
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .step-content h3 {
+            margin-bottom: 10px;
+            color: var(--light-gold);
+        }
+
+        /* Testimonials Section */
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            padding: 30px;
+            background-color: var(--gray);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+        }
+
+        .author-info h4 {
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .testimonial-dot.active {
+            background-color: var(--gold);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--gray);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--charcoal);
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gray);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--charcoal);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--gold);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--cream);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-gray);
+            color: var(--light-gold);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: var(--charcoal);
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--charcoal);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid var(--light-gold);
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        /* Adoption Steps */
+        .adoption-step {
+            display: none;
+        }
+
+        .adoption-step.active {
+            display: block;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--light-gold);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--light-gold);
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 5px;
+            transition: var(--transition);
+        }
+
+        .step.active .step-number {
+            background-color: var(--gold);
+        }
+
+        .step.completed .step-number {
+            background-color: var(--dark-gold);
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+        }
+
+        .step.active .step-label {
+            color: var(--charcoal);
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--gold);
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: none;
+        }
+
+        .chat-toggle:hover {
+            background-color: var(--dark-gold);
+            transform: scale(1.1);
+        }
+
+        .chat-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .chat-container {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background-color: var(--cream);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        }
+
+        .chat-container.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            background-color: var(--gold);
+            color: var(--charcoal);
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--charcoal);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background-color: var(--gold);
+            color: var(--charcoal);
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.admin {
+            align-self: flex-start;
+            background-color: var(--gray);
+            color: var(--cream);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid var(--light-gold);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--light-gold);
+            border-radius: 20px;
+            background-color: var(--white);
+            color: var(--charcoal);
+        }
+
+        .chat-input button {
+            background-color: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background-color: var(--dark-gold);
+        }
+
+        /* Login Modal */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .otp-input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            background-color: var(--white);
+            color: var(--charcoal);
+        }
+
+        /* Profile Dropdown */
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-btn {
+            background-color: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--cream);
+            min-width: 160px;
+            box-shadow: var(--shadow);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--charcoal);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light-gold);
+        }
+
+        .profile-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-container {
+                width: 300px;
+                height: 400px;
+            }
+
+            .process-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50,10 C70,10 85,25 85,45 C85,65 70,80 50,80 C30,80 15,65 15,45 C15,25 30,10 50,10 Z" fill="none" stroke="#d4af37" stroke-width="8"/>
+                        <path d="M35,35 C40,30 45,30 50,35 C55,30 60,30 65,35 C70,40 70,45 65,50 C60,55 55,55 50,50 C45,55 40,55 35,50 C30,45 30,40 35,35 Z" fill="#d4af37"/>
+                        <path d="M40,60 C45,65 50,65 55,60 C60,65 65,65 70,60" fill="none" stroke="#d4af37" stroke-width="4"/>
+                    </svg>
+                    <span class="logo-text">Aurum Paws</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#pets">Our Pets</a></li>
+                        <li><a href="#process">Adoption Process</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="btn btn-outline" id="login-btn">Login</button>
+                    <button class="btn btn-primary" id="signup-btn">Sign Up</button>
+                </div>
+                <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+                    <button class="profile-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        Profile
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" id="profile-link">My Profile</a>
+                        <a href="#" id="my-adoptions-link">My Adoptions</a>
+                        <a href="#" id="logout-link">Logout</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" id="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slideshow" id="hero-slideshow">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2043&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1560743641-3914f2c45636?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Find Your Luxury Companion</h1>
+            <p>At Aurum Paws, we connect discerning individuals with exceptional pets in need of forever homes. Experience the gold standard in pet adoption.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="view-pets-btn">View Available Pets</button>
+                <button class="btn btn-outline" id="learn-more-btn">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pets Section -->
+    <section class="section" id="pets">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Precious Companions</h2>
+            </div>
+            <div class="pets-grid" id="pets-grid">
+                <!-- Pet cards will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Adoption Process</h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Application</h3>
+                        <p>Submit our detailed adoption application to help us understand your preferences and lifestyle.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Consultation</h3>
+                        <p>Meet with our adoption specialists to discuss your needs and find the perfect match.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Home Check</h3>
+                        <p>We conduct a virtual home assessment to ensure a safe environment for your new pet.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Meet & Greet</h3>
+                        <p>Introduce your family to potential pets in a controlled, comfortable setting.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Finalization</h3>
+                        <p>Complete the adoption paperwork and bring your new companion home.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Happy Families</h2>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial-track" id="testimonial-track">
+                        <!-- Testimonials will be dynamically loaded here -->
+                    </div>
+                </div>
+                <div class="testimonial-nav" id="testimonial-nav">
+                    <!-- Navigation dots will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    
+    <section class="section" id="faq">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container" id="faq-container">
+            
+                        <div class="faq-item active"> 
+                
+                <div class="faq-question-hero-html"> 
+                    
+                                        <img src="" alt="A puppy being held in hands" class="faq-hero-img">
+                    
+                    <div class="faq-question-content">
+                        <h3>What is the adoption process at Aurum Paws?</h3>
+                        <span class="faq-icon">^</span> 
+                    </div>
+                </div>
+                
+                <div class="faq-answer">
+                    <p>Our adoption process begins with an initial application, followed by a consultation call, home check, and finally meeting your potential pet. The entire process typically takes 1-2 weeks to ensure the perfect match.</p>
+                </div>
+            </div>
+            
+                        <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do I need to pay a fee?</h3>
+                    <span class="faq-icon">▼</span> 
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, there is a small adoption fee that helps cover essential costs like vaccinations, spaying/neutering, and microchipping before the animal finds its forever home.</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+    
+    
+    
+    
+    
+    
+    
+    <!-- <section class="section" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container" id="faq-container">
+                <!-- FAQ items will be dynamically loaded here -->
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Aurum Paws</h3>
+                    <p>Luxury pet adoption for discerning individuals. We believe every pet deserves a golden home.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.016 10.016 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.543l-.047-.02z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#pets">Our Pets</a></li>
+                        <li><a href="#process">Adoption Process</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>123 sarabha nagar, Ludhiana City</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>info@aurumpaws.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Aurum Paws. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login to Aurum Paws</h2>
+                <button class="close-modal" id="close-login-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form" id="phone-login-form">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 123-4567" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send OTP</button>
+                </form>
+                <form class="login-form" id="otp-verify-form" style="display: none;">
+                    <div class="form-group">
+                        <label>Enter OTP</label>
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input" maxlength="1" required>
+                            <input type="text" class="otp-input" maxlength="1" required>
+                            <input type="text" class="otp-input" maxlength="1" required>
+                            <input type="text" class="otp-input" maxlength="1" required>
+                            <input type="text" class="otp-input" maxlength="1" required>
+                            <input type="text" class="otp-input" maxlength="1" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verify OTP</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adoption Modal -->
+    <div class="modal" id="adoption-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Adopt <span id="adoption-pet-name"></span></h2>
+                <button class="close-modal" id="close-adoption-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="step-indicator">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Preferences</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Home Details</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Review</div>
+                    </div>
+                </div>
+                
+                <div class="adoption-step active" id="step-1">
+                    <h3>Your Preferences</h3>
+                    <div class="form-group">
+                        <label>Gender Preference</label>
+                        <div>
+                            <input type="radio" id="gender-male" name="gender" value="male">
+                            <label for="gender-male">Male</label>
+                            <input type="radio" id="gender-female" name="gender" value="female">
+                            <label for="gender-female">Female</label>
+                            <input type="radio" id="gender-no-preference" name="gender" value="no-preference" checked>
+                            <label for="gender-no-preference">No Preference</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age-range">Preferred Age Range</label>
+                        <select id="age-range" class="form-control">
+                            <option value="any">Any Age</option>
+                            <option value="puppy-kitten">Puppy/Kitten (0-1 year)</option>
+                            <option value="young">Young (1-3 years)</option>
+                            <option value="adult">Adult (3-7 years)</option>
+                            <option value="senior">Senior (7+ years)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="adoption-step" id="step-2">
+                    <h3>Home Environment</h3>
+                    <div class="form-group">
+                        <label for="home-type">Type of Home</label>
+                        <select id="home-type" class="form-control">
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="condo">Condo</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="yard">Do you have a yard?</label>
+                        <select id="yard" class="form-control">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="other-pets">Other Pets in Home</label>
+                        <select id="other-pets" class="form-control">
+                            <option value="none">None</option>
+                            <option value="dogs">Dogs</option>
+                            <option value="cats">Cats</option>
+                            <option value="both">Both Dogs and Cats</option>
+                            <option value="other">Other Pets</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Children in Home</label>
+                        <select id="children" class="form-control">
+                            <option value="none">None</option>
+                            <option value="under5">Under 5 years</option>
+                            <option value="5-12">5-12 years</option>
+                            <option value="over12">Over 12 years</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="adoption-step" id="step-3">
+                    <h3>Review Your Information</h3>
+                    <div id="review-info">
+                        <!-- Review information will be dynamically populated -->
+                    </div>
+                    <div class="form-group">
+                        <label for="additional-notes">Additional Notes (Optional)</label>
+                        <textarea id="additional-notes" class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="prev-step">Previous</button>
+                <button class="btn btn-primary" id="next-step">Next</button>
+                <button class="btn btn-primary" id="submit-adoption" style="display: none;">Submit Application</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-toggle" id="chat-toggle">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+        </button>
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <h3>Aurum Paws Support</h3>
+                <button class="close-chat" id="close-chat">&times;</button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message admin">
+                    Hello! How can we help you today?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-message">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for pets
+        const pets = [
+            {
+                id: 1,
+                name: "Bella",
+                type: "Dog",
+                breed: "Golden Retriever",
+                age: "2 years",
+                gender: "Female",
+                image: "https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=962&q=80",
+                description: "Bella is a gentle and affectionate Golden Retriever who loves cuddles and outdoor adventures."
+            },
+            {
+                id: 2,
+                name: "Luna",
+                type: "Cat",
+                breed: "Siamese",
+                age: "1.5 years",
+                gender: "Female",
+                image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80",
+                description: "Luna is an elegant Siamese with striking blue eyes and a playful, curious personality."
+            },
+            {
+                id: 3,
+                name: "Max",
+                type: "Dog",
+                breed: "Labrador Retriever",
+                age: "3 years",
+                gender: "Male",
+                image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                description: "Max is a friendly and energetic Labrador who loves playing fetch and going for long walks."
+            },
+            {
+                id: 4,
+                name: "Oliver",
+                type: "Cat",
+                breed: "Maine Coon",
+                age: "4 years",
+                gender: "Male",
+                image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80",
+                description: "Oliver is a majestic Maine Coon with a luxurious coat and a gentle, friendly disposition."
+            },
+            {
+                id: 5,
+                name: "Charlie",
+                type: "Dog",
+                breed: "French Bulldog",
+                age: "1 year",
+                gender: "Male",
+                image: "https://images.unsplash.com/photo-1517423738875-5ce310acd3da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1070&q=80",
+                description: "Charlie is an adorable French Bulldog with a playful personality and a love for attention."
+            },
+            {
+                id: 6,
+                name: "Sophie",
+                type: "Cat",
+                breed: "Ragdoll",
+                age: "2.5 years",
+                gender: "Female",
+                image: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                description: "Sophie is a beautiful Ragdoll with stunning blue eyes and a calm, affectionate nature."
+            },
+            {
+                id: 7,
+                name: "Rocky",
+                type: "Dog",
+                breed: "Siberian Husky",
+                age: "2 years",
+                gender: "Male",
+                image: "https://images.unsplash.com/photo-1517423568366-8b83523034fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: "Rocky is a majestic Husky with striking blue eyes and a love for cold weather and adventures."
+            },
+            {
+                id: 8,
+                name: "Milo",
+                type: "Cat",
+                breed: "Bengal",
+                age: "1 year",
+                gender: "Male",
+                image: "https://www.angiesmobilepetstyling.com/wp-content/uploads/2024/06/Proven-Strategies-to-Reduce-Pet-Stress-1024x585.jpg",
+                description: "Milo is an energetic Bengal with beautiful spotted coat and a playful, curious nature."
+            }
+        ];
+
+        // Sample data for FAQs
+        const faqs = [
+            {
+                question: "What is the adoption process at Aurum Paws?",
+                answer: "Our adoption process begins with an initial application, followed by a consultation call, home check, and finally meeting your potential pet. The entire process typically takes 1-2 weeks to ensure the perfect match."
+            },
+            {
+                question: "Are there any adoption fees?",
+                answer: "Yes, our adoption fees range from $200 to $500 depending on the pet. This fee covers vaccinations, spay/neuter surgery, microchipping, and a comprehensive health check."
+            },
+            {
+                question: "What if the pet doesn't fit well with my family?",
+                answer: "We offer a 30-day trial period for all adoptions. If for any reason the pet isn't a good fit, we will work with you to find a better match or provide a full refund."
+            },
+            {
+                question: "Do you offer international adoptions?",
+                answer: "Yes, we facilitate international adoptions for qualified applicants. Additional fees apply for transportation and documentation, and the process may take longer than domestic adoptions."
+            },
+            {
+                question: "Can I adopt if I live in an apartment?",
+                answer: "Absolutely! We assess each pet's needs individually. Many of our pets are perfectly suited for apartment living, as long as they receive adequate exercise and mental stimulation."
+                
+            }
+        ];
+
+        // Testimonials data
+        const testimonials = [
+            {
+                id: 1,
+                content: "Adopting through Aurum Paws was a seamless experience. Their attention to detail and personalized matching process ensured we found the perfect companion for our family.",
+                author: "Sarah Johnson",
+                role: "Adopted Bella",
+                avatar: "https://tse1.mm.bing.net/th/id/OIP.fxOsP1NAx7aPNWpRVQpyjAHaKx?rs=1&pid=ImgDetMain&o=7&rm=3"
+            },
+            {
+                id: 2,
+                content: "The luxury adoption experience at Aurum Paws is unmatched. They truly understand that pets are family and ensure every detail is perfect for both the pet and the adopter.",
+                author: "Michael Chen",
+                role: "Adopted Oliver",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+            },
+            {
+                id: 3,
+                content: "From the initial consultation to bringing Luna home, every step was handled with care and professionalism. The 30-day trial period gave us peace of mind.",
+                author: "Emily Rodriguez",
+                role: "Adopted Luna",
+                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            }
+        ];
+
+        // Chat responses
+        const chatResponses = [
+            "Thank you for your interest in Aurum Paws! How can we assist you today?",
+            "Our adoption specialists are available to answer any questions you may have about our pets.",
+            "We'd be happy to schedule a consultation to discuss which pet might be the best fit for your home.",
+            "All our pets undergo comprehensive health checks before adoption.",
+            "The adoption process typically takes 1-2 weeks from application to bringing your new pet home.",
+            "We offer a 30-day trial period to ensure the pet is a good match for your family.",
+            "Our adoption fees range from $200 to $500 depending on the pet.",
+            "Yes, we do offer international adoptions for qualified applicants."
+        ];
+
+        // DOM Elements
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const authButtons = document.getElementById('auth-buttons');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const logoutLink = document.getElementById('logout-link');
+        const loginModal = document.getElementById('login-modal');
+        const closeLoginModal = document.getElementById('close-login-modal');
+        const phoneLoginForm = document.getElementById('phone-login-form');
+        const otpVerifyForm = document.getElementById('otp-verify-form');
+        const adoptionModal = document.getElementById('adoption-modal');
+        const closeAdoptionModal = document.getElementById('close-adoption-modal');
+        const petsGrid = document.getElementById('pets-grid');
+        const faqContainer = document.getElementById('faq-container');
+        const testimonialTrack = document.getElementById('testimonial-track');
+        const testimonialNav = document.getElementById('testimonial-nav');
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatContainer = document.getElementById('chat-container');
+        const closeChat = document.getElementById('close-chat');
+        const sendMessageBtn = document.getElementById('send-message');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const viewPetsBtn = document.getElementById('view-pets-btn');
+        const learnMoreBtn = document.getElementById('learn-more-btn');
+        const contactForm = document.getElementById('contact-form');
+        const adoptionPetName = document.getElementById('adoption-pet-name');
+        const prevStepBtn = document.getElementById('prev-step');
+        const nextStepBtn = document.getElementById('next-step');
+        const submitAdoptionBtn = document.getElementById('submit-adoption');
+        const heroSlideshow = document.getElementById('hero-slideshow');
+        const slides = document.querySelectorAll('.slide');
+
+        // Current state
+        let currentStep = 1;
+        let currentPetId = null;
+        let currentSlide = 0;
+        let isLoggedIn = false;
+        let currentTestimonial = 0;
+
+        // Initialize the application
+        function init() {
+            renderPets();
+            renderFAQs();
+            renderTestimonials();
+            setupEventListeners();
+            startSlideshow();
+            startTestimonialSlider();
+        }
+
+        // Render pets to the grid
+        function renderPets() {
+            petsGrid.innerHTML = '';
+            pets.forEach(pet => {
+                const petCard = document.createElement('div');
+                petCard.className = 'pet-card';
+                petCard.innerHTML = `
+                    <img src="${pet.image}" alt="${pet.name}" class="pet-image">
+                    <div class="pet-info">
+                        <h3 class="pet-name">${pet.name}</h3>
+                        <div class="pet-details">
+                            <div class="pet-detail">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+                                </svg>
+                                <span>${pet.breed}</span>
+                            </div>
+                            <div class="pet-detail">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                                </svg>
+                                <span>${pet.age}</span>
+                            </div>
+                            <div class="pet-detail">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                </svg>
+                                <span>${pet.gender}</span>
+                            </div>
+                        </div>
+                        <p class="pet-description">${pet.description}</p>
+                        <button class="btn btn-primary adopt-btn" data-id="${pet.id}">Adopt ${pet.name}</button>
+                    </div>
+                `;
+                petsGrid.appendChild(petCard);
+            });
+
+            // Add event listeners to adopt buttons
+            document.querySelectorAll('.adopt-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const petId = parseInt(this.getAttribute('data-id'));
+                    openAdoptionModal(petId);
+                });
+            });
+        }
+
+        // Render FAQs with smaller blocks
+        function renderFAQs() {
+            faqContainer.innerHTML = '';
+            faqs.forEach((faq, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item';
+                faqItem.innerHTML = `
+                    <div class="faq-question">
+                        <h3>${faq.question}</h3>
+                        <svg class="faq-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>${faq.answer}</p>
+                    </div>
+                `;
+                faqContainer.appendChild(faqItem);
+
+                // Add click event to toggle FAQ
+                const faqQuestion = faqItem.querySelector('.faq-question');
+                faqQuestion.addEventListener('click', () => {
+                    faqItem.classList.toggle('active');
+                });
+            });
+        }
+
+        // Render testimonials
+        function renderTestimonials() {
+            testimonialTrack.innerHTML = '';
+            testimonialNav.innerHTML = '';
+            
+            testimonials.forEach((testimonial, index) => {
+                // Create testimonial slide
+                const testimonialElement = document.createElement('div');
+                testimonialElement.className = 'testimonial';
+                testimonialElement.innerHTML = `
+                    <div class="testimonial-content">
+                        ${testimonial.content}
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="${testimonial.avatar}" alt="${testimonial.author}" class="author-avatar">
+                        <div class="author-info">
+                            <h4>${testimonial.author}</h4>
+                            <p>${testimonial.role}</p>
+                        </div>
+                    </div>
+                `;
+                testimonialTrack.appendChild(testimonialElement);
+                
+                // Create navigation dot
+                const dot = document.createElement('div');
+                dot.className = `testimonial-dot ${index === 0 ? 'active' : ''}`;
+                dot.setAttribute('data-index', index);
+                dot.addEventListener('click', () => {
+                    goToTestimonial(index);
+                });
+                testimonialNav.appendChild(dot);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Login modal
+            loginBtn.addEventListener('click', () => {
+                loginModal.classList.add('active');
+            });
+
+            closeLoginModal.addEventListener('click', () => {
+                loginModal.classList.remove('active');
+            });
+
+            // Phone login form
+            phoneLoginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                phoneLoginForm.style.display = 'none';
+                otpVerifyForm.style.display = 'flex';
+                // In a real app, you would send the OTP to the phone number here
+            });
+
+            // OTP verification form
+            otpVerifyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // In a real app, you would verify the OTP here
+                loginModal.classList.remove('active');
+                alert('Login successful!');
+                // Update UI to show user is logged in
+                loginSuccessful();
+            });
+
+            // Adoption modal
+            closeAdoptionModal.addEventListener('click', () => {
+                adoptionModal.classList.remove('active');
+                resetAdoptionForm();
+            });
+
+            // Chat widget
+            chatToggle.addEventListener('click', () => {
+                chatContainer.classList.toggle('active');
+            });
+
+            closeChat.addEventListener('click', () => {
+                chatContainer.classList.remove('active');
+            });
+
+            sendMessageBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Mobile menu
+            mobileMenuToggle.addEventListener('click', () => {
+                // Remove mobile menu functionality since it's not needed
+                alert('Navigation links are available in the main navigation bar');
+            });
+
+            // View pets button
+            viewPetsBtn.addEventListener('click', () => {
+                document.getElementById('pets').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Learn more button
+            learnMoreBtn.addEventListener('click', () => {
+                document.getElementById('process').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Contact form
+            // contactForm.addEventListener('submit', (e) => {
+            //     e.preventDefault();
+            //     alert('Thank you for your message! We will get back to you soon.');
+            //     contactForm.reset();
+
+           
+          document.getElementById('contact-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+           const data = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          subject: document.getElementById('subject').value,
+         message: document.getElementById('message').value
+  };
+
+  try {
+    const response = await fetch('/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.text();
+    alert(result); // Shows success message from backend
+    document.getElementById('contact-form').reset();
+  } catch (error) {
+    alert('Something went wrong. Please try again.');
+  }
+});
+
+            };
+
+            // Adoption steps
+            prevStepBtn.addEventListener('click', prevStep);
+            nextStepBtn.addEventListener('click', nextStep);
+            submitAdoptionBtn.addEventListener('click', submitAdoption);
+
+            // Logout
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                logout();
+            });
+
+            // Close modals when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === loginModal) {
+                    loginModal.classList.remove('active');
+                }
+                if (e.target === adoptionModal) {
+                    adoptionModal.classList.remove('active');
+                    resetAdoptionForm();
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        
+
+        // Login successful handler
+        function loginSuccessful() {
+            isLoggedIn = true;
+            authButtons.style.display = 'none';
+            profileDropdown.style.display = 'inline-block';
+        }
+
+        // Logout handler
+        function logout() {
+            isLoggedIn = false;
+            authButtons.style.display = 'flex';
+            profileDropdown.style.display = 'none';
+            alert('You have been logged out successfully.');
+        }
+
+        // Open adoption modal
+        function openAdoptionModal(petId) {
+            if (!isLoggedIn) {
+                alert('Please login to start the adoption process.');
+                loginModal.classList.add('active');
+                return;
+            }
+            
+            const pet = pets.find(p => p.id === petId);
+            if (pet) {
+                currentPetId = petId;
+                adoptionPetName.textContent = pet.name;
+                adoptionModal.classList.add('active');
+                resetAdoptionForm();
+            }
+        }
+
+        // Reset adoption form
+        function resetAdoptionForm() {
+            currentStep = 1;
+            updateStepIndicator();
+            document.getElementById('step-1').classList.add('active');
+            document.getElementById('step-2').classList.remove('active');
+            document.getElementById('step-3').classList.remove('active');
+            prevStepBtn.style.display = 'none';
+            nextStepBtn.style.display = 'block';
+            submitAdoptionBtn.style.display = 'none';
+        }
+
+        // Update step indicator
+        function updateStepIndicator() {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active', 'completed');
+                const stepNum = parseInt(step.getAttribute('data-step'));
+                if (stepNum === currentStep) {
+                    step.classList.add('active');
+                } else if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+        }
+
+        // Previous step in adoption process
+        function prevStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                updateStepIndicator();
+                
+                if (currentStep === 1) {
+                    prevStepBtn.style.display = 'none';
+                }
+                nextStepBtn.style.display = 'block';
+                submitAdoptionBtn.style.display = 'none';
+            }
+        }
+
+        // Next step in adoption process
+        function nextStep() {
+            if (currentStep < 3) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                currentStep++;
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                updateStepIndicator();
+                
+                if (currentStep === 2) {
+                    prevStepBtn.style.display = 'block';
+                }
+                
+                if (currentStep === 3) {
+                    nextStepBtn.style.display = 'none';
+                    submitAdoptionBtn.style.display = 'block';
+                    updateReviewInfo();
+                }
+            }
+        }
+
+        // Update review information
+        function updateReviewInfo() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const ageRange = document.getElementById('age-range').value;
+            const homeType = document.getElementById('home-type').value;
+            const yard = document.getElementById('yard').value;
+            const otherPets = document.getElementById('other-pets').value;
+            const children = document.getElementById('children').value;
+            
+            const reviewInfo = document.getElementById('review-info');
+            reviewInfo.innerHTML = `
+                <p><strong>Gender Preference:</strong> ${gender === 'no-preference' ? 'No Preference' : gender}</p>
+                <p><strong>Age Range:</strong> ${document.getElementById('age-range').options[document.getElementById('age-range').selectedIndex].text}</p>
+                <p><strong>Home Type:</strong> ${homeType}</p>
+                <p><strong>Yard:</strong> ${yard === 'yes' ? 'Yes' : 'No'}</p>
+                <p><strong>Other Pets:</strong> ${otherPets === 'none' ? 'None' : otherPets}</p>
+                <p><strong>Children:</strong> ${children === 'none' ? 'None' : document.getElementById('children').options[document.getElementById('children').selectedIndex].text}</p>
+            `;
+        }
+
+        // Submit adoption application
+        function submitAdoption() {
+            const additionalNotes = document.getElementById('additional-notes').value;
+            // In a real app, you would send this data to the server
+            alert('Adoption application submitted successfully! We will contact you within 2 business days.');
+            adoptionModal.classList.remove('active');
+            resetAdoptionForm();
+        }
+
+        // Send chat message with varied responses
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user';
+                userMessage.textContent = message;
+                chatMessages.appendChild(userMessage);
+                
+                // Clear input
+                chatInput.value = '';
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Simulate admin reply after a delay with random response
+                setTimeout(() => {
+                    const adminMessage = document.createElement('div');
+                    adminMessage.className = 'message admin';
+                    const randomResponse = chatResponses[Math.floor(Math.random() * chatResponses.length)];
+                    adminMessage.textContent = randomResponse;
+                    chatMessages.appendChild(adminMessage);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        // Hero slideshow
+        function startSlideshow() {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000);
+        }
+
+        // Testimonial slider
+        function startTestimonialSlider() {
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                goToTestimonial(currentTestimonial);
+            }, 5000);
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            testimonialTrack.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update active dot
+            document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
